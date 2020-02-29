@@ -1,0 +1,12 @@
+version: '3.5'
+services:
+  imagesAPI:
+    image: 'neodmy/imagesapi'
+    container_name: 'neodmy-imagesapi'
+    environment:
+      - PORT=5000
+    ports:
+      - 5000:5000
+    devices:
+      - /dev/video0:/dev/video0
+      - /dev/video1:/dev/video1

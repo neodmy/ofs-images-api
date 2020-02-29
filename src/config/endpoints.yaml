@@ -1,0 +1,60 @@
+images:
+  endpoint: /images
+  path: src/public
+  routes:
+    -
+      endpoint: /webcam1
+      file: webcam1.jpg
+      command: ffmpeg
+      arguments: 
+        - -y 
+        - -f 
+        - video4linux2 
+        - -s 
+        - 640x480 
+        - -i
+        - /dev/video0 
+        - -vframes
+        - 1 
+        - ./src/public/webcam1.jpg        
+    -
+      endpoint: /webcam2
+      file: webcam2.jpg
+      command: ffmpeg
+      arguments: 
+        - -y
+        - -f
+        - video4linux2
+        - -s
+        - 640x480
+        - -i
+        - /dev/video1
+        - -vframes
+        - 1
+        - ./src/public/webcam2.jpg        
+    -
+      endpoint: /exterior
+      file: exterior.jpg
+      command:  wget
+      arguments: 
+        - "http://ip:port/cgi-bin/image.jpg?error=current&config&size=640x480&textdisplay=enable"
+        - -nv
+        - --user=user
+        - --password=password
+        - -t
+        - 1
+        - -O
+        - ./src/public/exterior.jpg
+    -
+      endpoint: /allsky
+      file: allsky.jpg
+      command: wget 
+      arguments: 
+        - "http://ip:port/cgi-bin/image.jpg?error=current&config&size=640x480&textdisplay=enable"
+        - -nv
+        - --user=user
+        - --password=password
+        - -t
+        - 1
+        - -O
+        - ./src/public/allsky.jpg
